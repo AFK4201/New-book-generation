@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import StoryGenerator from "./components/StoryGenerator";
 import ChatInterface from "./components/ChatInterface";
 import StoryLibrary from "./components/StoryLibrary";
+import AdvancedStoryCreator from "./components/AdvancedStoryCreator";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
@@ -26,7 +27,13 @@ const Navigation = () => {
               to="/" 
               className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-200"
             >
-              Story Generator
+              Quick Generator
+            </Link>
+            <Link 
+              to="/advanced" 
+              className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-200 bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-400/30"
+            >
+              Advanced Creator ⚡
             </Link>
             <Link 
               to="/chat" 
@@ -58,6 +65,7 @@ function App() {
         <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/advanced" element={<AdvancedStoryCreator />} />
           <Route path="/chat" element={<ChatInterface />} />
           <Route path="/library" element={<StoryLibrary />} />
         </Routes>
