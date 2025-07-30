@@ -16,6 +16,41 @@ from mistralai import Mistral
 from models import *
 from orchestrator import MasterOrchestrator
 
+# Legacy models for backward compatibility
+class StatusCheck(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    client_name: str
+    timestamp: datetime = Field(default_factory=datetime.utcnow)
+
+class StatusCheckCreate(BaseModel):
+    client_name: str
+
+class StoryRequest(BaseModel):
+    prompt: str
+    max_tokens: Optional[int] = 1000
+    temperature: Optional[float] = 0.7
+
+class ChatMessage(BaseModel):
+    role: str  # "user" or "assistant"
+    content: str
+
+class ChatRequest(BaseModel):
+    messages: List[ChatMessage]
+    max_tokens: Optional[int] = 1000
+    temperature: Optional[float] = 0.7
+
+class Story(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    title: str
+    content: str
+    prompt: str
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+class StoryCreate(BaseModel):
+    title: str
+    content: str
+    prompt: str
+
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
