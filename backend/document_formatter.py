@@ -7,7 +7,7 @@ from docx.oxml.shared import OxmlElement, qn
 from docx.oxml.ns import nsdecls
 from docx.oxml import parse_xml
 from models import ChapterContent, AgentStatusEnum
-from typing import List
+from typing import List, Dict, Any
 from datetime import datetime
 import logging
 
